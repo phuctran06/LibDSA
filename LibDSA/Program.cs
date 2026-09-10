@@ -6,7 +6,7 @@ class Program
     public void ShowArray(int[] Array)
     {
         Console.WriteLine("________________________________");
-        Console.WriteLine("MẢNG HIỆN TẠI:");
+        Console.WriteLine("CURRENT ARRAY:");
         Console.WriteLine(string.Join(", ", Array));
         Console.WriteLine();
     }
@@ -22,20 +22,20 @@ class Program
             Console.WriteLine("1. Selection Sort");
             Console.WriteLine("2. Bubble Sort");
             Console.WriteLine("3. Sort 3");
-            Console.Write("Chọn thuật toán: ");
+            Console.Write("Choose algorithm: ");
 
             string input = Console.ReadLine();
 
             if (!int.TryParse(input, out choice))
             {
-                Console.WriteLine("Vui lòng nhập số!");
+                Console.WriteLine("Please enter a number!");
                 Console.WriteLine();
                 continue;
             }
 
             if (choice < 1 || choice > 3)
             {
-                Console.WriteLine("Vui lòng chọn từ 1 đến 3!");
+                Console.WriteLine("Please choose from 1 to 3!");
                 Console.WriteLine();
                 continue;
             }
@@ -43,32 +43,36 @@ class Program
             break;
         }
 
+        Console.WriteLine();
+        Console.WriteLine("Array before sorting:");
+        Console.WriteLine(string.Join(", ", Array));
+        Console.WriteLine();
+
         if (choice == 1)
         {
+            Console.WriteLine("Using Selection Sort...");
             sorter.SelectionSort(Array);
-
-            Console.WriteLine("Mảng sau khi xếp tăng dần: "
-                + string.Join(", ", Array));
         }
         else if (choice == 2)
         {
+            Console.WriteLine("Using Bubble Sort...");
             sorter.BubbleSort(Array);
-
-            Console.WriteLine("Mảng sau khi xếp tăng dần: "
-                + string.Join(", ", Array));
         }
         else if (choice == 3)
         {
-            // Tạm thời chưa gọi Sort thứ 3
-            Console.WriteLine("Đã chọn Sort 3");
+            Console.WriteLine("Using Sort 3...");
+
         }
 
+        Console.WriteLine();
+        Console.WriteLine("Array after sorting:");
+        Console.WriteLine(string.Join(", ", Array));
         Console.WriteLine();
     }
 
     public void SearchMenu(int[] Array)
     {
-        // Tạm thời chưa làm Search
+        // Search will be implemented later
     }
 
     static void Main(string[] args)
@@ -84,26 +88,26 @@ class Program
         while (true)
         {
             Console.WriteLine("================================");
-            Console.WriteLine("        MENU CHÍNH");
+            Console.WriteLine("           MAIN MENU");
             Console.WriteLine("================================");
-            Console.WriteLine("0. Xem mảng hiện tại");
+            Console.WriteLine("0. Show Current Array");
             Console.WriteLine("1. Sort");
             Console.WriteLine("2. Search");
             Console.WriteLine("3. Exit");
-            Console.Write("Chọn: ");
+            Console.Write("Choose: ");
 
             string input = Console.ReadLine();
 
             if (!int.TryParse(input, out choice))
             {
-                Console.WriteLine("Vui lòng nhập số!");
+                Console.WriteLine("Please enter a number!");
                 Console.WriteLine();
                 continue;
             }
 
             if (choice < 0 || choice > 3)
             {
-                Console.WriteLine("Vui lòng chọn từ 0 đến 3!");
+                Console.WriteLine("Please choose from 0 to 3!");
                 Console.WriteLine();
                 continue;
             }
@@ -122,7 +126,7 @@ class Program
             }
             else if (choice == 3)
             {
-                Console.WriteLine("Thoát chương trình.");
+                Console.WriteLine("Exiting program...");
                 break;
             }
         }
