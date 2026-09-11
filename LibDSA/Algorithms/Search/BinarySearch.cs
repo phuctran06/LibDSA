@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LibDSA.Algorithms
+namespace LibDSA.Algorithms.Search
 {
-    internal class IntersectionSort
+    internal class BinarySearch
     {
     }
 }

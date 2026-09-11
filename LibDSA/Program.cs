@@ -11,7 +11,7 @@ class Program
         Console.WriteLine();
     }
 
-    public void SortMenu(Sort sorter, int[] Array)
+    public void SortMenu(Sort sorter, int[] Array, ref int[] CurrentArray)
     {
         int choice;
 
@@ -21,7 +21,7 @@ class Program
             Console.WriteLine("SORT");
             Console.WriteLine("1. Selection Sort");
             Console.WriteLine("2. Bubble Sort");
-            Console.WriteLine("3. Sort 3");
+            Console.WriteLine("3. Insertion Sort");
             Console.Write("Choose algorithm: ");
 
             string input = Console.ReadLine();
@@ -43,30 +43,33 @@ class Program
             break;
         }
 
+        // Create a new array from the original array
+        CurrentArray = (int[])Array.Clone();
+
         Console.WriteLine();
         Console.WriteLine("Array before sorting:");
-        Console.WriteLine(string.Join(", ", Array));
+        Console.WriteLine(string.Join(", ", CurrentArray));
         Console.WriteLine();
 
         if (choice == 1)
         {
             Console.WriteLine("Using Selection Sort...");
-            sorter.SelectionSort(Array);
+            sorter.SelectionSort(CurrentArray);
         }
         else if (choice == 2)
         {
             Console.WriteLine("Using Bubble Sort...");
-            sorter.BubbleSort(Array);
+            sorter.BubbleSort(CurrentArray);
         }
         else if (choice == 3)
         {
-            Console.WriteLine("Using Sort 3...");
-
+            Console.WriteLine("Using Insertion Sort...");
+            sorter.InsertionSort(CurrentArray);
         }
 
         Console.WriteLine();
         Console.WriteLine("Array after sorting:");
-        Console.WriteLine(string.Join(", ", Array));
+        Console.WriteLine(string.Join(", ", CurrentArray));
         Console.WriteLine();
     }
 
@@ -79,6 +82,9 @@ class Program
     {
         int[] Array = { 64, 25, 12, 22, 11 };
 
+        // Array used to store the latest sorting result
+        int[] CurrentArray = (int[])Array.Clone();
+
         Sort sorter = new Sort();
 
         Program program = new Program();
@@ -88,8 +94,7 @@ class Program
         while (true)
         {
             Console.WriteLine("================================");
-            Console.WriteLine("           MAIN MENU");
-            Console.WriteLine("================================");
+            Console.WriteLine("              MENU");
             Console.WriteLine("0. Show Current Array");
             Console.WriteLine("1. Sort");
             Console.WriteLine("2. Search");
@@ -114,15 +119,15 @@ class Program
 
             if (choice == 0)
             {
-                program.ShowArray(Array);
+                program.ShowArray(CurrentArray);
             }
             else if (choice == 1)
             {
-                program.SortMenu(sorter, Array);
+                program.SortMenu(sorter, Array, ref CurrentArray);
             }
             else if (choice == 2)
             {
-                program.SearchMenu(Array);
+                program.SearchMenu(CurrentArray);
             }
             else if (choice == 3)
             {
